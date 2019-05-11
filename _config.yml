@@ -79,6 +79,6 @@ theme: landscape
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/Rwantop/rwantop.github.com.git
-  branch: public
+  repo: https://github.com/Rwantop/dylan.github.com.git
+  branch: gh-pages
   message:
