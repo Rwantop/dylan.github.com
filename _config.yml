@@ -3,13 +3,29 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: rwantop
+SEOTitle: rwantop
 subtitle:
 description:
 keywords:
-author: John Doe
-language:
-timezone:
+author: dylan
+language: zh
+timezone: Asia/Shanghai
+
+# 用户设置
+avatar: avatar.png
+
+# Utteranc 评论系统
+comment:
+  repo: rwantop/dylan.github.com
+
+# 社交平台链接：
+sns:
+  github: rwantop
+
+# 博客访问数据
+track:
+  gaid: 123
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -21,6 +37,7 @@ permalink_defaults:
 # Directory
 source_dir: source
 public_dir: public
+project_dir: projects
 tag_dir: tags
 archive_dir: archives
 category_dir: categories
@@ -73,7 +90,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: cold-stone
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
