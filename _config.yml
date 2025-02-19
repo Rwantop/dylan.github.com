@@ -9,7 +9,7 @@ subtitle:
 description:
 keywords:
 author: dylan
-language: zh
+language: zh-CN
 timezone: Asia/Shanghai
 
 # 用户设置
@@ -59,7 +59,7 @@ highlight:
   enable: true
   line_number: true
   auto_detect: false
-  tab_replace:
+  tab_replace:  
   
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
@@ -90,10 +90,17 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: cold-stone
+theme: cactus
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
+theme_config:
+  colorscheme: white
+  nav:
+    home: /
+    bout: /about/
+    articles: /archives/
+    projects: /
 deploy:
   type: git
   repo: https://github.com/Rwantop/dylan.github.com.git
