@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="LeetCode 140. 单词拆分 IILeetCode 140. 单词拆分 II 是一道经典的动态规划与回溯结合的题目。题目要求给定一个非空字符串 s 和一个包含非空单词列表的字典 wordDict，要求将字符串 s 拆分成由字典中的单词组成的句子，并返回所有可能的句子。 示例输入:s &#x3D; “catsanddog” wordDict &#x3D; [“cat”, “cats”, “a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode140实践">
+<meta property="og:url" content="http://rwantop.top/2024/03/20/leetcode-word-break-2/index.html">
+<meta property="og:site_name" content="rwantop">
+<meta property="og:description" content="LeetCode 140. 单词拆分 IILeetCode 140. 单词拆分 II 是一道经典的动态规划与回溯结合的题目。题目要求给定一个非空字符串 s 和一个包含非空单词列表的字典 wordDict，要求将字符串 s 拆分成由字典中的单词组成的句子，并返回所有可能的句子。 示例输入:s &#x3D; “catsanddog” wordDict &#x3D; [“cat”, “cats”, “a">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-03-20T09:05:40.000Z">
+<meta property="article:modified_time" content="2025-02-19T09:19:14.856Z">
+<meta property="article:author" content="dylan">
+<meta property="article:tag" content="leetcode">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>leetcode140实践</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">bout</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/">项目</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2024/06/05/ac-machine/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2024/03/19/leetcode-word-break/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://rwantop.top/2024/03/20/leetcode-word-break-2/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://rwantop.top/2024/03/20/leetcode-word-break-2/&text=leetcode140实践"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://rwantop.top/2024/03/20/leetcode-word-break-2/&title=leetcode140实践"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://rwantop.top/2024/03/20/leetcode-word-break-2/&is_video=false&description=leetcode140实践"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=leetcode140实践&body=Check out this article: http://rwantop.top/2024/03/20/leetcode-word-break-2/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://rwantop.top/2024/03/20/leetcode-word-break-2/&title=leetcode140实践"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://rwantop.top/2024/03/20/leetcode-word-break-2/&title=leetcode140实践"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://rwantop.top/2024/03/20/leetcode-word-break-2/&title=leetcode140实践"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://rwantop.top/2024/03/20/leetcode-word-break-2/&title=leetcode140实践"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://rwantop.top/2024/03/20/leetcode-word-break-2/&name=leetcode140实践&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://rwantop.top/2024/03/20/leetcode-word-break-2/&t=leetcode140实践"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#LeetCode-140-%E5%8D%95%E8%AF%8D%E6%8B%86%E5%88%86-II"><span class="toc-number">1.</span> <span class="toc-text">LeetCode 140. 单词拆分 II</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.1.</span> <span class="toc-text">示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="toc-number">1.2.</span> <span class="toc-text">解题思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E6%8B%86%E5%88%86"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 动态规划判断是否可以拆分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%9B%9E%E6%BA%AF%E7%94%9F%E6%88%90%E6%89%80%E6%9C%89%E5%8F%AF%E8%83%BD%E7%9A%84%E6%8B%86%E5%88%86%E6%96%B9%E5%BC%8F"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 回溯生成所有可能的拆分方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.3.</span> <span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E9%87%8A"><span class="toc-number">1.4.</span> <span class="toc-text">代码解释</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E9%83%A8%E5%88%86%EF%BC%9A"><span class="toc-number">1.4.1.</span> <span class="toc-text">动态规划部分：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E6%BA%AF%E9%83%A8%E5%88%86%EF%BC%9A"><span class="toc-number">1.4.2.</span> <span class="toc-text">回溯部分：</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        leetcode140实践
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">dylan</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-03-20T09:05:40.000Z" class="dt-published" itemprop="datePublished">2024-03-20</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/leetcode/" rel="tag">leetcode</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="LeetCode-140-单词拆分-II"><a href="#LeetCode-140-单词拆分-II" class="headerlink" title="LeetCode 140. 单词拆分 II"></a>LeetCode 140. 单词拆分 II</h1><p>LeetCode 140. 单词拆分 II 是一道经典的动态规划与回溯结合的题目。题目要求给定一个非空字符串 <code>s</code> 和一个包含非空单词列表的字典 <code>wordDict</code>，要求将字符串 <code>s</code> 拆分成由字典中的单词组成的句子，并返回所有可能的句子。</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p><strong>输入:</strong><br>s &#x3D; “catsanddog”</p>
+<p>wordDict &#x3D; [“cat”, “cats”, “and”, “sand”, “dog”]</p>
+<p><strong>输出:</strong><br>[</p>
+<p>“cats and dog”,</p>
+<p>“cat sand dog”</p>
+<p>]</p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>这道题可以分解为两个部分：</p>
+<ol>
+<li>判断字符串是否可以拆分成字典中的单词：这一步可以通过动态规划来解决。</li>
+<li>生成所有可能的拆分方式：这一步可以通过回溯算法来解决。</li>
+</ol>
+<h3 id="1-动态规划判断是否可以拆分"><a href="#1-动态规划判断是否可以拆分" class="headerlink" title="1. 动态规划判断是否可以拆分"></a>1. 动态规划判断是否可以拆分</h3><p>我们可以使用动态规划来判断字符串 <code>s</code> 是否可以拆分成字典中的单词。定义一个布尔数组 <code>dp</code>，其中 <code>dp[i]</code> 表示字符串 <code>s</code> 的前 <code>i</code> 个字符是否可以拆分成字典中的单词。</p>
+<ul>
+<li>初始化 <code>dp[0] = True</code>，表示空字符串可以被拆分。</li>
+<li>对于每个位置 <code>i</code>，遍历所有可能的 <code>j</code>（<code>0 &lt;= j &lt; i</code>），如果 <code>dp[j]</code> 为 <code>True</code> 且 <code>s[j:i]</code> 在字典中，则 <code>dp[i] = True</code>。</li>
+</ul>
+<h3 id="2-回溯生成所有可能的拆分方式"><a href="#2-回溯生成所有可能的拆分方式" class="headerlink" title="2. 回溯生成所有可能的拆分方式"></a>2. 回溯生成所有可能的拆分方式</h3><p>在确定了字符串可以被拆分之后，我们可以使用回溯算法来生成所有可能的拆分方式。具体步骤如下：</p>
+<ul>
+<li>从字符串的起始位置开始，尝试所有可能的拆分点。</li>
+<li>如果当前子串在字典中，则递归处理剩余部分。</li>
+<li>当处理到字符串末尾时，将当前的拆分方式加入结果集。</li>
+</ul>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">List</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wordBreak</span>(<span class="params">self, s: <span class="built_in">str</span>, wordDict: <span class="type">List</span>[<span class="built_in">str</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">str</span>]:</span><br><span class="line">        <span class="comment"># 将字典转换为集合，方便快速查找</span></span><br><span class="line">        wordSet = <span class="built_in">set</span>(wordDict)</span><br><span class="line">        n = <span class="built_in">len</span>(s)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 动态规划判断是否可以拆分</span></span><br><span class="line">        dp = [<span class="literal">False</span>] * (n + <span class="number">1</span>)</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="literal">True</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i):</span><br><span class="line">                <span class="keyword">if</span> dp[j] <span class="keyword">and</span> s[j:i] <span class="keyword">in</span> wordSet:</span><br><span class="line">                    dp[i] = <span class="literal">True</span></span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 如果无法拆分，直接返回空列表</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> dp[n]:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 回溯生成所有可能的拆分方式</span></span><br><span class="line">        result = []</span><br><span class="line">        <span class="variable language_">self</span>.backtrack(s, wordSet, <span class="number">0</span>, [], result)</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">backtrack</span>(<span class="params">self, s, wordSet, start, path, result</span>):</span><br><span class="line">        <span class="keyword">if</span> start == <span class="built_in">len</span>(s):</span><br><span class="line">            result.append(<span class="string">&quot; &quot;</span>.join(path))</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> end <span class="keyword">in</span> <span class="built_in">range</span>(start + <span class="number">1</span>, <span class="built_in">len</span>(s) + <span class="number">1</span>):</span><br><span class="line">            word = s[start:end]</span><br><span class="line">            <span class="keyword">if</span> word <span class="keyword">in</span> wordSet:</span><br><span class="line">                <span class="variable language_">self</span>.backtrack(s, wordSet, end, path + [word], result)</span><br></pre></td></tr></table></figure>
+
+<h2 id="代码解释"><a href="#代码解释" class="headerlink" title="代码解释"></a>代码解释</h2><h3 id="动态规划部分："><a href="#动态规划部分：" class="headerlink" title="动态规划部分："></a>动态规划部分：</h3><ol>
+<li>我们首先将 wordDict 转换为集合 wordSet，以便快速查找。</li>
+<li>然后我们初始化 dp 数组，dp[0] 为 True，表示空字符串可以被拆分。</li>
+<li>对于每个位置 i，我们遍历所有可能的 j，如果 dp[j] 为 True 且 s[j:i] 在 wordSet 中，则 dp[i] 为 True。</li>
+</ol>
+<h3 id="回溯部分："><a href="#回溯部分：" class="headerlink" title="回溯部分："></a>回溯部分：</h3><ol>
+<li>我们从字符串的起始位置开始，尝试所有可能的拆分点。</li>
+<li>如果当前子串在 wordSet 中，则递归处理剩余部分。</li>
+<li>当处理到字符串末尾时，将当前的拆分方式加入结果集。</li>
+</ol>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">bout</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/">项目</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#LeetCode-140-%E5%8D%95%E8%AF%8D%E6%8B%86%E5%88%86-II"><span class="toc-number">1.</span> <span class="toc-text">LeetCode 140. 单词拆分 II</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.1.</span> <span class="toc-text">示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="toc-number">1.2.</span> <span class="toc-text">解题思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E6%8B%86%E5%88%86"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 动态规划判断是否可以拆分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%9B%9E%E6%BA%AF%E7%94%9F%E6%88%90%E6%89%80%E6%9C%89%E5%8F%AF%E8%83%BD%E7%9A%84%E6%8B%86%E5%88%86%E6%96%B9%E5%BC%8F"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 回溯生成所有可能的拆分方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.3.</span> <span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E9%87%8A"><span class="toc-number">1.4.</span> <span class="toc-text">代码解释</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E9%83%A8%E5%88%86%EF%BC%9A"><span class="toc-number">1.4.1.</span> <span class="toc-text">动态规划部分：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E6%BA%AF%E9%83%A8%E5%88%86%EF%BC%9A"><span class="toc-number">1.4.2.</span> <span class="toc-text">回溯部分：</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://rwantop.top/2024/03/20/leetcode-word-break-2/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://rwantop.top/2024/03/20/leetcode-word-break-2/&text=leetcode140实践"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://rwantop.top/2024/03/20/leetcode-word-break-2/&title=leetcode140实践"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://rwantop.top/2024/03/20/leetcode-word-break-2/&is_video=false&description=leetcode140实践"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=leetcode140实践&body=Check out this article: http://rwantop.top/2024/03/20/leetcode-word-break-2/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://rwantop.top/2024/03/20/leetcode-word-break-2/&title=leetcode140实践"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://rwantop.top/2024/03/20/leetcode-word-break-2/&title=leetcode140实践"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://rwantop.top/2024/03/20/leetcode-word-break-2/&title=leetcode140实践"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://rwantop.top/2024/03/20/leetcode-word-break-2/&title=leetcode140实践"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://rwantop.top/2024/03/20/leetcode-word-break-2/&name=leetcode140实践&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://rwantop.top/2024/03/20/leetcode-word-break-2/&t=leetcode140实践"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2025
+    dylan
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">bout</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/">项目</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
